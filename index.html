@@ -281,7 +281,7 @@
         if (res.ok) {
           if (isLogin) {
             localStorage.setItem('token', data.token);
-            window.location.href = '/players';
+            window.location.href = '/PlayerCatalog.tsx';
           } else {
             messageElement.className = 'message success';
             messageElement.innerText = data.message || 'Signup successful. You can now log in.';

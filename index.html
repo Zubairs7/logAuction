@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Auction - Login & Signup</title>
+  <style>
+    :root {
+      --primary: #1e7e34;
+      --primary-dark: #155724;
+      --secondary: #ffc107;
+      --accent: #fd7e14;
+      --dark: #212529;
+      --light: #FFFFFF;
+      --gray-100: #F8F9FA;
+      --gray-200: #E9ECEF;
+      --gray-300: #DEE2E6;
+      --gray-400: #CED4DA;
+      --gray-500: #ADB5BD;
+      --gray-600: #6C757D;
+      --gray-700: #495057;
+      --gray-800: #343A40;
+      --gray-900: #212529;
+      --radius-md: 12px;
+      --shadow-card: 0 4px 24px rgba(30,126,52,0.10);
+    }
+    body {
+      background: linear-gradient(120deg, #f8f9fa 60%, #e9f5ee 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      padding: 0;
+    }
+    header {
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      text-align: center;
+      padding: 20px 0 12px 0;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(30,126,52,0.07);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      border-bottom-left-radius: var(--radius-md);
+      border-bottom-right-radius: var(--radius-md);
+    }
+    header span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #1e7e34;
+      background: none;
+      text-shadow: 0 2px 8px rgba(30,126,52,0.06);
+    }
+    header svg {
+      width: 32px;
+      height: 32px;
+      margin-right: 0;
+    }
+    header .tagline {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #155724;
+      opacity: 0.85;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 400px;
+      margin: 110px auto 0 auto;
+      background: #fff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      padding: 36px 28px 28px 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .login-section {
+      width: 100%;
+      padding: 0;
+      max-width: 100%;
+    }
+    h2#formTitle {
+      text-align: center;
+      color: var(--dark);
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--gray-600);
+      margin-bottom: 26px;
+      font-size: 15px;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      background: var(--gray-100);
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--light);
+    }
+    input::placeholder {
+      color: #6C757D;
+      opacity: 1;
+      font-size: 15px;
+    }
+    input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #6C757D;
+    }
+    input::-ms-input-placeholder { /* Microsoft Edge */
+      color: #6C757D;
+    }
+    .input-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #198754, #43c6ac);
+      color: var(--light);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(30,126,52,0.07);
+    }
+    button:hover {
+      background: linear-gradient(90deg, #157347, #11998e);
+      box-shadow: 0 4px 16px rgba(30,126,52,0.10);
+    }
+    .toggle-btn {
+      background: none;
+      color: var(--primary);
+      margin-top: 18px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: underline;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .toggle-btn:hover {
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+    .message {
+      text-align: center;
+      margin-top: 18px;
+      padding: 10px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+    }
+    .error {
+      background: rgba(220, 53, 69, 0.08);
+      color: #dc3545;
+    }
+    .success {
+      background: rgba(40, 167, 69, 0.08);
+      color: #28a745;
+    }
+    @media (max-width: 768px) {
+      .page-container {
+        margin: 90px 8px 0 8px;
+        padding: 22px 6px 12px 6px;
+      }
+      header span {
+        font-size: 1.2rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .page-container {
+        margin: 70px 2px 0 2px;
+        padding: 10px 2px 6px 2px;
+      }
+      header span {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="width:100vw;position:fixed;top:0;left:0;text-align:center;padding:20px 0 12px 0;background:#fff;box-shadow:0 2px 12px rgba(30,126,52,0.07);z-index:100;display:flex;flex-direction:column;align-items:center;gap:2px;border-bottom-left-radius:var(--radius-md);border-bottom-right-radius:var(--radius-md);">
+    <span style="display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Poppins', 'Segoe UI', Arial, sans-serif;font-size:2rem;font-weight:900;letter-spacing:2px;color:#1e7e34;background:none;text-shadow:0 2px 8px rgba(30,126,52,0.06);">
+      <svg width="32" height="32" viewBox="0 0 38 38" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="16" fill="#dc3545" stroke="#fff" stroke-width="2"/>
+        <path d="M10 19 Q19 28 28 19" stroke="#fff" stroke-width="2" fill="none"/>
+      </svg>
+      Crick Auction
+    </span>
+    <span class="tagline">Bid. Build. Win. Your Dream Cricket Team Awaits!</span>
+  </header>
+  <div style="height:80px;"></div>
+  <div class="page-container">
+    <div class="login-section">
+      <h2 id="formTitle">Welcome to Cricket Auction</h2>
+      <p class="subtitle">Sign in to join the bidding and build your dream team!</p>
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Username" required>
+        <svg class="input-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required>
+        <svg class="input-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <button onclick="submitForm()">Sign In</button>
+      <button class="toggle-btn" onclick="toggleForm()">Not a user? Sign up</button>
+      <p class="message" id="message"></p>
+    </div>
+  </div>
+
+  <script>
+    let isLogin = true;
+
+    function toggleForm() {
+      isLogin = !isLogin;
+      document.getElementById('formTitle').innerText = isLogin ? 'Welcome to Cricket Auction' : 'Create Account';
+      document.querySelector('button[onclick="submitForm()"]')
+        .innerText = isLogin ? 'Sign In' : 'Sign Up';
+      document.querySelector('.toggle-btn').innerText = isLogin ? 'Not a user? Sign up' : 'Already a user? Login';
+      document.getElementById('message').innerText = '';
+      document.getElementById('message').className = 'message';
+    }
+
+    async function submitForm() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const messageElement = document.getElementById('message');
+      const endpoint = isLogin ? 'https://monster-backend.onrender.com/login' : 'https://monster-backend.onrender.com/signup';
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          if (isLogin) {
+            localStorage.setItem('token', data.token);
+            window.location.href = 'dashboard.html';
+          } else {
+            messageElement.className = 'message success';
+            messageElement.innerText = data.message || 'Signup successful. You can now log in.';
+          }
+        } else {
+          messageElement.className = 'message error';
+          messageElement.innerText = data.message || 'Something went wrong.';
+        }
+      } catch (err) {
+        messageElement.className = 'message error';
+        messageElement.innerText = 'Server error. Please try again.';
+      }
+    }
+  </script>
+</body>
+</html>
